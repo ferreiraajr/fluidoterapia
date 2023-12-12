@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Fluidoterapia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-green-500 to-green-300  flex flex-col items-center justify-center h-screen">
+    <img src="assets/img/dog.svg" alt="" srcset="" class="lg:w-36 sm:w-40 h-auto mb-4">
+    <div class="max-w-md max-h-md sm:max-w-md lg:h-auto sm:h-screen lg:h-96 bg-white p-6 rounded-md shadow-md">
+        <h1 class="text-2xl font-bold mb-4 text-center">Calculadora de Fluidoterapia</h1>
+        <form id="fluidCalculator" class="space-y-3 h-full md:max-h-md flex-col justify-center">
+            <div>
+                <label for="peso" class="block text-gray-700 font-semibold">Peso do Animal (kg):</label>
+                <input type="number" id="peso" name="peso" min="0" step="0.1"
+                    class="w-full rounded-md border border-gray-300 py-1.5 pl-1 focus:border-blue-500 focus:ring-blue-500">
+            </div>
+            <div>
+                <label for="percentual" class="block text-gray-700 font-semibold">Percentual Desejado (%):</label>
+                <input type="number" id="percentual" name="percentual" min="0" max="100" step="0.1"
+                    class="block flex-1 rounded-md border border-gray-300 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6" placeholder="50">
+            </div>
+            <div>
+                <button type="button" onclick="calcular()"
+                    class="w-full bg-green-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-green-300">
+                    Calcular Taxa de Infusão
+                </button>
+            </div>
+            <div>
+                <label for="resultado" class="block text-gray-700 font-semibold">Taxa de Infusão:</label>
+                <input type="text" id="resultado" name="resultado" readonly
+                    class="w-full rounded-md border-3 border-gray-300 bg-gray-100 p-2">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function calcular() {
+            const peso = parseFloat(document.getElementById('peso').value);
+            const percentual = parseFloat(document.getElementById('percentual').value);
+
+            if (isNaN(peso) || isNaN(percentual)) {
+                alert('Por favor, insira um valor válido para o peso e percentual.');
+                return;
+            }
+
+            const taxaInfusao = (peso * percentual / 100).toFixed(2);
+
+            document.getElementById('resultado').value = taxaInfusao + ' mL/h';
+        }
+    </script>
+</body>
+
+</html>
